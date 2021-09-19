@@ -1,0 +1,20 @@
+{
+  "name": "what-to-draw",
+  "version": "1.0.0",
+  "description": "Using the Unsplash API to come up with drawing prompts",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/melanierichards/what-to-draw.git"
+  },
+  "author": "Melanie Richards",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/melanierichards/what-to-draw/issues"
+  },
+  "homepage": "https://github.com/melanierichards/what-to-draw#readme",
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "node-fetch": "^2.6.2"
+  }
+}

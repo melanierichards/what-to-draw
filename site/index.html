@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>What to Draw</title>
+  <meta name="description" content="A drawing idea generator. Get a photo reference for drawing inspiration!">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    .reference-container {
+      opacity: 0;
+      transition: opacity 300ms ease-in-out;
+    }
+
+    .reference-container--shown {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>What to Draw</h1>
+    <p>Stumped on what to draw? Get a reference image as inspiration!</p>
+  </header>
+  <main>
+    <noscript>
+      <p>Please enable JavaScript in your browser to use this drawing generator.</p>
+    </noscript>
+    <div id="response-container" class="reference-container" hidden>
+      <h2>How about this?</h2>
+      <figure class="reference">
+        <img style="max-width: 100%;" id="response-image" class="reference__image" src="" alt="">
+        <figcaption class="reference__desc">
+          <a id="response-link" href="">Photo on Unsplash</a> by <a id="response-author" href=""></a>
+        </figcaption>
+      </figure>
+      <button id="fetch-btn">Try another photo</button>
+    </div>
+  </main>
+  <footer>
+    <p>Made by <a href="https://melanie-richards.com">Melanie Richards</a>, using the <a
+        href="https://unsplash.com/documentation">Unsplash API</a>. <a
+        href="https://github.com/melanierichards/what-to-draw">Explore the code</a>.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
