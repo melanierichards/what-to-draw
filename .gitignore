@@ -19,3 +19,6 @@ jspm_packages/
 
 # Optional eslint cache
 .eslintcache
+
+# WSL2
+*:Zone.Identifier

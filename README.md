@@ -9,3 +9,9 @@ This project uses Netlify serverless functions, and the [Netlify CLI](https://do
 1. Run `npm install netlify-cli -g`.
 2. From the project directory, run `ntl login`.
 3. Run `ntl dev`.
+
+### Other commands
+
+| Command | Purpose |
+| :------ | :------ |
+| `npm run watch:sass` | Watch and compile changes to Sass files |

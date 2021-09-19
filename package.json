@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Using the Unsplash API to come up with drawing prompts",
   "main": "index.js",
+  "scripts": {
+    "sass": "npx sass --style=compressed site/assets/sass/style.scss site/assets/css/style.css",
+    "watch:sass": "npm run sass -- --watch"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/melanierichards/what-to-draw.git"
@@ -15,6 +19,7 @@
   "homepage": "https://github.com/melanierichards/what-to-draw#readme",
   "devDependencies": {
     "dotenv": "^10.0.0",
-    "node-fetch": "^2.6.2"
+    "node-fetch": "^2.6.2",
+    "sass": "^1.41.1"
   }
 }

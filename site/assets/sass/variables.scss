@@ -1,0 +1,41 @@
+/*
+ *  =============================================
+ *  VARIABLES
+ *  =============================================
+ */
+
+ $space-xxs: .25rem;
+ $space-xs: .5rem;
+ $space-s: 1rem;
+ $space-m: 2rem;
+ $space-l: 4rem;
+ $space-xl: 6rem;
+ $space-xxl: 8rem;
+
+ $bp-vw-s: 40em;
+ $bp-vw-m: 48em;
+
+ $bp-vh-xs: 40em;
+ $bp-vh-s: 48em;
+ $bp-vh-m: 60em;
+
+/*
+ *  --------------------------------------------
+ *  COLOR
+ *  --------------------------------------------
+ */
+
+:root {
+  color-scheme: light dark;
+
+  --color-text: #222;
+  --color-selection-bg: #FDAF99;
+  --color-selection: #000;
+  --color-link-hover: #000;
+  --color-heading: #000;
+  --color-button-bg: #000;
+  --color-button-fore: #fff;
+  --color-button-bg-hover: #333;
+  --color-footer-text: #4b4b4b;
+  --color-decoration: #999;
+}
