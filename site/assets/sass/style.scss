@@ -99,7 +99,7 @@ button:hover {
   }
 
   main {
-    margin: $space-m auto $space-l;
+    margin: 0 auto $space-l;
   }
 }
 
@@ -109,26 +109,22 @@ button:hover {
  *  =============================================
  */
 
-header {
-  display: inline-flex;
-  align-items: center;
-  text-align: left;
-  gap: 1rem;
-}
-
 header,
 footer {
   padding: $space-s $space-s $space-m;
 }
 
 .jumble {
-  min-height: 8rem;
-}
+  width: 5rem;
+  height: 5rem;
 
-.jumble {
   circle, path, polygon, rect {
     transition: fill 300ms ease-in-out;
   }
+}
+
+.header__text {
+  margin-top: $space-s;
 }
 
 h1 {
@@ -141,8 +137,32 @@ h1 {
 }
 
 .header__subtext {
-  margin-top: $space-xs;
+  margin: $space-xs auto 0;
   max-width: 20em;
+}
+
+@media (min-width: $bp-vw-s) {
+  header {
+    display: inline-flex;
+    align-items: center;
+    text-align: left;
+    gap: 1rem;
+  }
+
+  .jumble {
+    width: auto;
+    height: auto;
+    min-height: 8rem;
+  }
+
+  .header__text {
+    margin-top: 0;
+  }
+
+  .header__text {
+    margin-right: 0;
+    margin-left: 0;
+  }
 }
 
 /*
@@ -170,6 +190,7 @@ figure {
 
 .reference__desc {
   margin: $space-xs auto $space-m;
+  padding: 0 $space-s;
 }
 
 @supports (object-fit: contain) {
@@ -177,6 +198,14 @@ figure {
     width: 100%;
     height: 100vh;
     object-fit: contain;
+  }
+
+  @supports (aspect-ratio: 1) {
+    .reference__image {
+      height: auto;
+      max-height: 100vh;
+      aspect-ratio: 3 / 4;
+    }
   }
 
   @media (min-height: $bp-vh-s) {
