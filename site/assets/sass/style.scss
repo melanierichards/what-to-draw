@@ -83,10 +83,17 @@ button:hover {
   cursor: pointer;
   border-color: var(--color-button-bg-hover);
   background-color: var(--color-button-bg-hover);
+}
 
+button:hover,
+button:focus {
   span {
     border-bottom-color: currentColor;
   }
+}
+
+button:focus {
+  outline-offset: 3px;
 }
 
 @media (min-width: $bp-vw-m) {
