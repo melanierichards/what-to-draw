@@ -27,23 +27,27 @@ document.addEventListener('DOMContentLoaded', () => {
         photoColorSubtle = convertToSubtleColor(photoColor),
         jumbleParts = document.querySelectorAll('.jumble *');
 
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      responseImage.style.backgroundColor = photoColorSubtle;
-    } else {
-      responseImage.style.backgroundColor = photoColor;
-    }
-    
-    responseImage.setAttribute('src', JSON.stringify(response.photoUrl).replace(/"/g, ''));
-    responseImage.setAttribute('alt', JSON.stringify(response.photoAlt).replace(/"/g, ''));
-    responseLink.setAttribute('href', JSON.stringify(response.photoPage).replace(/"/g, ''));
-    responseAuthor.innerText = JSON.stringify(response.authorName).replace(/"/g, '');
-    responseAuthor.setAttribute('href', JSON.stringify(response.authorPage).replace(/"/g, ''));
-
+    // Give photo "exit" transition time to run
     setTimeout(() => {
-      responseContainer.classList.add('reference-container--shown');
-      for (let i = 0; i < jumbleParts.length; i++) {
-        jumbleParts[i].style.fill = photoColor;
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        responseImage.style.backgroundColor = photoColorSubtle;
+      } else {
+        responseImage.style.backgroundColor = photoColor;
       }
+      
+      responseImage.setAttribute('src', JSON.stringify(response.photoUrl).replace(/"/g, ''));
+      responseImage.setAttribute('alt', JSON.stringify(response.photoAlt).replace(/"/g, ''));
+      responseLink.setAttribute('href', JSON.stringify(response.photoPage).replace(/"/g, ''));
+      responseAuthor.innerText = JSON.stringify(response.authorName).replace(/"/g, '');
+      responseAuthor.setAttribute('href', JSON.stringify(response.authorPage).replace(/"/g, ''));
+
+      // Give a short mental break after previous photo fades out
+      setTimeout(() => {
+        responseContainer.classList.add('reference-container--shown');
+        for (let i = 0; i < jumbleParts.length; i++) {
+          jumbleParts[i].style.fill = photoColor;
+        }
+      }, delay);
     }, delay);
   };
 
@@ -58,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Update photo upon user request
   const updatePhotoContainer = function () {
     responseContainer.classList.remove('reference-container--shown');
-    fetchPhoto(500);
+    fetchPhoto(300);
   };
 
   // Fetch new photo on clicking button
