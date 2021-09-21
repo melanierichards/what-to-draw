@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // Set up vars
-  const fetchBtn = document.getElementById('fetch-btn');
-  const responseContainer = document.getElementById('response-container');
-  const responseImage = document.getElementById('response-image');
-  const responseLink = document.getElementById('response-link');
-  const responseAuthor = document.getElementById('response-author');
+  const fetchBtn = document.getElementById('fetch-btn'),
+        responseContainer = document.getElementById('response-container'),
+        responseImage = document.getElementById('response-image'),
+        responseLink = document.getElementById('response-link'),
+        responseAuthor = document.getElementById('response-author');
 
   /* Convert photo color from API, from hex to RGB
    * Add alpha channel
@@ -22,10 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Retrieve + display random photo from API
   const fetchPhoto = async function (delay) {
-    const response = await fetch('/.netlify/functions/photos').then(response => response.json());
-    const photoColor = JSON.stringify(response.color).replace(/"/g, '');
-    const photoColorSubtle = convertToSubtleColor(photoColor);
-    const jumbleParts = document.querySelectorAll('.jumble *');
+    let response = await fetch('/.netlify/functions/photos').then(response => response.json()),
+        photoColor = JSON.stringify(response.color).replace(/"/g, ''),
+        photoColorSubtle = convertToSubtleColor(photoColor),
+        jumbleParts = document.querySelectorAll('.jumble *');
 
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       responseImage.style.backgroundColor = photoColorSubtle;
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const setupPhotoContainer = function () {
     responseContainer.removeAttribute('hidden');
     fetchPhoto(0);
-  }
+  };
 
   setupPhotoContainer();
 
