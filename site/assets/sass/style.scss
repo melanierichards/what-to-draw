@@ -103,6 +103,19 @@ button:hover {
   }
 }
 
+@media (forced-colors: active) {
+  a:hover::after {
+    height: 2px;
+    background-color: LinkText;
+  }
+
+  button:hover {
+    span {
+      border-bottom-style: dashed;
+    }
+  }
+}
+
 /*
  *  =============================================
  *  HEADER
@@ -174,6 +187,15 @@ h1 {
   }
 }
 
+@media (forced-colors: active) {
+  .jumble {
+    circle, path, polygon, rect {
+      stroke-width: 0;
+      fill: CanvasText !important;
+    }
+  }
+}
+
 /*
  *  =============================================
  *  REFERENCE IMAGE AREA
@@ -230,6 +252,12 @@ figure {
   }
 }
 
+@media (forced-colors: active) {
+  .reference__image {
+    padding: 0;
+  }
+}
+
 /*
  *  =============================================
  *  FOOTER
@@ -267,4 +295,15 @@ footer::after {
   width: 8px;
   height: 8px;
   background-color: var(--color-decoration);
+}
+
+@media (forced-colors: active) {
+  footer::before {
+    forced-color-adjust: none;
+    border-color: transparent transparent CanvasText transparent;
+  }
+
+  footer::after {
+    background-color: CanvasText;
+  }
 }
