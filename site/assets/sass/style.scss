@@ -165,6 +165,15 @@ h1 {
   }
 }
 
+@media (prefers-color-scheme: dark) {
+  .jumble {
+    circle, path, polygon, rect {
+      stroke-width: 2;
+      stroke: #efefef;
+    }
+  }
+}
+
 /*
  *  =============================================
  *  REFERENCE IMAGE AREA

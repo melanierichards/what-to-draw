@@ -7,17 +7,38 @@ document.addEventListener('DOMContentLoaded', () => {
   const responseLink = document.getElementById('response-link');
   const responseAuthor = document.getElementById('response-author');
 
-  // Retrieve random photo from API
+  /* Convert photo color from API, from hex to RGB
+   * Add alpha channel
+   * Used to make image background color more subtle in dark theme
+   */
+  function convertToSubtleColor(hex) {
+    let r = 0, g = 0, b = 0;
+
+    r = "0x" + hex[1] + hex[2];
+    g = "0x" + hex[3] + hex[4];
+    b = "0x" + hex[5] + hex[6];
+    return "rgb("+ +r + "," + +g + "," + +b + ", 0.3)";
+  }
+
+  // Retrieve + display random photo from API
   const fetchPhoto = async function (delay) {
     const response = await fetch('/.netlify/functions/photos').then(response => response.json());
     const photoColor = JSON.stringify(response.color).replace(/"/g, '');
+    const photoColorSubtle = convertToSubtleColor(photoColor);
     const jumbleParts = document.querySelectorAll('.jumble *');
-    responseImage.style.backgroundColor = photoColor;
+
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      responseImage.style.backgroundColor = photoColorSubtle;
+    } else {
+      responseImage.style.backgroundColor = photoColor;
+    }
+    
     responseImage.setAttribute('src', JSON.stringify(response.photoUrl).replace(/"/g, ''));
     responseImage.setAttribute('alt', JSON.stringify(response.photoAlt).replace(/"/g, ''));
     responseLink.setAttribute('href', JSON.stringify(response.photoPage).replace(/"/g, ''));
     responseAuthor.innerText = JSON.stringify(response.authorName).replace(/"/g, '');
     responseAuthor.setAttribute('href', JSON.stringify(response.authorPage).replace(/"/g, ''));
+
     setTimeout(() => {
       responseContainer.classList.add('reference-container--shown');
       for (let i = 0; i < jumbleParts.length; i++) {
