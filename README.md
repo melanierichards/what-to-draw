@@ -1,6 +1,10 @@
 # What To Draw
 
-Using the Unsplash API to come up with drawing prompts
+Using the Unsplash API to come up with drawing prompts!
+
+Live site at [whattodraw.melanie-richards.com](https://whattodraw.melanie-richards.com)
+
+![Screenshot of the website, in which a photo of cacti has been randomly selected. The graphical elements are a dark green, to match the photo.](readme-example.jpg)
 
 ## Running locally
 
@@ -27,3 +31,8 @@ This project uses Netlify serverless functions, and the [Netlify CLI](https://do
 | :------ | :------ |
 | `ntl dev` | Run local dev server |
 | `npm run watch:sass` | Watch and compile changes to Sass files |
+
+## Additional details
+
+[Photo of water in site icons](https://unsplash.com/photos/ZxGdri2EWzk) by 
+Akira Hojo.
