@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const setupErrorState = function () {
     fetchBtn.setAttribute('disabled', 'true');
     responseContainer.classList.add('reference-container--shown');
+    responseContent.setAttribute('aria-busy', 'false');
   };
 
   // Handle errors retrieving data from API

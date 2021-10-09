@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>What to Draw</title>
+  <title>What to Draw, a drawing idea generator</title>
   <meta name="description" content="A drawing idea generator. Get a photo reference for drawing inspiration!">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="assets/css/style.css">
@@ -28,10 +28,11 @@
     </div>
     <div class="header__text">
       <h1>What to Draw</h1>
-      <p class="header__subtext">Stumped on what to draw? Get a reference image as inspiration!</p>
+      <p class="header__subtext">Stumped on what to draw? Get a reference photo as inspiration!</p>
     </div>
   </header>
   <main id="main">
+    <h2 class="u-vis-hidden">Your Reference Photo</h2>
     <noscript>
       <p>Please enable JavaScript in your browser to use this drawing generator.</p>
     </noscript>
@@ -45,7 +46,6 @@
       <button id="fetch-btn" class="fetch-btn">
         <span>Try another photo</span>
       </button>
-      <p id="fetch-status" aria-live="assertive" class="u-vis-hidden"></p>
     </div>
   </main>
   <footer>
@@ -53,7 +53,7 @@
         href="https://unsplash.com/documentation">Unsplash API</a>. <a
         href="https://github.com/melanierichards/what-to-draw">Explore the code</a>.</p>
   </footer>
-
+  <p id="fetch-status" aria-live="assertive" class="u-vis-hidden"></p>
   <script src="script.js"></script>
 </body>
 

@@ -80,13 +80,13 @@ button {
   }
 }
 
-button:hover {
+button:not([disabled]):hover {
   cursor: pointer;
   border-color: var(--color-button-bg-hover);
   background-color: var(--color-button-bg-hover);
 }
 
-button:hover,
+button:not([disabled]):hover,
 button:focus {
   span {
     border-bottom-color: currentColor;
@@ -95,6 +95,14 @@ button:focus {
 
 button:focus {
   outline-offset: 3px;
+}
+
+button[disabled] {
+  opacity: .3;
+
+  &:hover {
+    cursor: not-allowed;
+  }
 }
 
 .u-vis-hidden {
