@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
         responseContent = document.getElementById('response'),
         responseImage = document.getElementById('response-image'),
         responseLink = document.getElementById('response-link'),
-        responseAuthor = document.getElementById('response-author');
+        responseAuthor = document.getElementById('response-author'),
+        fetchStatus = document.getElementById('fetch-status');
 
   /* Convert photo color from API, from hex to RGB
    * Add alpha channel
@@ -49,6 +50,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Retrieve + display random photo from API
   const fetchPhoto = async function (delay) {
+    responseContent.setAttribute('aria-busy', 'true');
+    fetchStatus.innerText = 'Getting photo';
     let response = await fetch('/.netlify/functions/photos').then(handleErrors).then(response => response.json());
     
     if (response) {
@@ -73,6 +76,8 @@ document.addEventListener('DOMContentLoaded', function () {
       // Give a short mental break after previous photo fades out
       setTimeout(function () {
         responseContainer.classList.add('reference-container--shown');
+        responseContent.setAttribute('aria-busy', 'false');
+        fetchStatus.innerText = `New photo by ${JSON.stringify(response.authorName).replace(/"/g, '')} loaded`;
         for (let i = 0; i < jumbleParts.length; i++) {
           jumbleParts[i].style.fill = photoColor;
         }

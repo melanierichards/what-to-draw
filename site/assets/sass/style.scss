@@ -97,6 +97,15 @@ button:focus {
   outline-offset: 3px;
 }
 
+.u-vis-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  position: absolute !important;
+}
+
 @media (min-width: $bp-vw-m) {
   html {
     padding: $space-s $space-l;
