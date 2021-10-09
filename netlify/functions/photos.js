@@ -12,6 +12,7 @@ exports.handler = async function () {
     body: JSON.stringify({
       photoUrl: data.urls.regular,
       photoAlt: data.alt_description,
+      photoDesc: data.description,
       color: data.color,
       photoPage: data.links.html,
       authorName: data.user.name,

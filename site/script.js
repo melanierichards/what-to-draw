@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
     g = "0x" + hex[3] + hex[4];
     b = "0x" + hex[5] + hex[6];
     return "rgb("+ +r + "," + +g + "," + +b + ", 0.3)";
-  }
+  };
 
   // Create error message
   const createErrorMsg = function () {
@@ -66,9 +66,19 @@ document.addEventListener('DOMContentLoaded', function () {
       } else {
         responseImage.style.backgroundColor = photoColor;
       }
+
+      // Descriptions coming back from the API can be patchy
+      if (JSON.stringify(response.photoAlt).replace(/"/g, '') !== 'null') {
+        responseAltValue = JSON.stringify(response.photoAlt).replace(/"/g, '');
+      } else if (JSON.stringify(response.photoDesc).replace(/"/g, '') !== 'null') {
+        responseAltValue = JSON.stringify(response.photoDesc).replace(/"/g, '');
+      } else {
+        responseAltValue = 'No description provided';
+      }
       
+      // Add values to image + metadata
       responseImage.setAttribute('src', JSON.stringify(response.photoUrl).replace(/"/g, ''));
-      responseImage.setAttribute('alt', JSON.stringify(response.photoAlt).replace(/"/g, ''));
+      responseImage.setAttribute('alt', responseAltValue);
       responseLink.setAttribute('href', JSON.stringify(response.photoPage).replace(/"/g, ''));
       responseAuthor.innerText = JSON.stringify(response.authorName).replace(/"/g, '');
       responseAuthor.setAttribute('href', JSON.stringify(response.authorPage).replace(/"/g, ''));
