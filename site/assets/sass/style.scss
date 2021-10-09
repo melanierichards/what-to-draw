@@ -60,6 +60,7 @@ p {
 }
 
 main {
+  position: relative;
   margin: 0 auto $space-m;
 }
 
@@ -227,8 +228,12 @@ figure {
 }
 
 .reference__desc {
-  margin: $space-xs auto $space-m;
+  margin: $space-xs auto 0;
   padding: 0 $space-s;
+}
+
+.fetch-btn {
+  margin-top: $space-m;
 }
 
 @supports (object-fit: contain) {
@@ -262,6 +267,42 @@ figure {
 @media (forced-colors: active) {
   .reference__image {
     padding: 0;
+  }
+}
+
+/*
+ *  =============================================
+ *  ERROR MESSAGE
+ *  =============================================
+ */
+
+#error-msg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  padding: $space-s;
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  background-color: var(--color-bg-subtle);
+
+  p {
+    margin: 0 auto;
+    max-width: 20em;
+  }
+}
+
+@media (min-height: $bp-vh-s) {
+  #error-msg {
+    padding: $space-m;
+  }
+}
+
+@media (min-height: $bp-vh-m) {
+  #error-msg {
+    padding: $space-l;
   }
 }
 

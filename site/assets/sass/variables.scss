@@ -38,6 +38,7 @@
   --color-button-bg-hover: #333;
   --color-footer-text: #4b4b4b;
   --color-decoration: #999;
+  --color-bg-subtle: #efefef;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -49,5 +50,6 @@
   --color-button-fore: #000;
   --color-button-bg-hover: #fff;
   --color-footer-text: #b2b2b2;
+  --color-bg-subtle: #222;
   }
 }

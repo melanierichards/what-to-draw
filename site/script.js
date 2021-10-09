@@ -1,8 +1,10 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function () {
 
   // Set up vars
-  const fetchBtn = document.getElementById('fetch-btn'),
+  const main = document.getElementById('main'),
+        fetchBtn = document.getElementById('fetch-btn'),
         responseContainer = document.getElementById('response-container'),
+        responseContent = document.getElementById('response'),
         responseImage = document.getElementById('response-image'),
         responseLink = document.getElementById('response-link'),
         responseAuthor = document.getElementById('response-author');
@@ -11,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
    * Add alpha channel
    * Used to make image background color more subtle in dark theme
    */
-  function convertToSubtleColor(hex) {
+  const convertToSubtleColor = function (hex) {
     let r = 0, g = 0, b = 0;
 
     r = "0x" + hex[1] + hex[2];
@@ -20,31 +22,63 @@ document.addEventListener('DOMContentLoaded', () => {
     return "rgb("+ +r + "," + +g + "," + +b + ", 0.3)";
   }
 
+  // Create error message
+  const createErrorMsg = function () {
+    let errorMsg = document.createElement('div');
+    errorMsg.setAttribute('role', 'alert');
+    errorMsg.setAttribute('id', 'error-msg');
+    errorMsg.innerHTML = '<p>Sorry, something went wrong! Most likely this page has hit its hourly limit for getting new photos. Please try again later.</p>';
+    responseContent.innerHTML = '';
+    responseContent.appendChild(errorMsg);
+  };
+
+  // Set up error state of page
+  const setupErrorState = function () {
+    fetchBtn.setAttribute('disabled', 'true');
+    responseContainer.classList.add('reference-container--shown');
+  };
+
+  // Handle errors retrieving data from API
+  const handleErrors = function (response) {
+    if (!response.ok) {
+      createErrorMsg();
+      setupErrorState();
+    }
+    return response;
+  };
+
   // Retrieve + display random photo from API
   const fetchPhoto = async function (delay) {
-    let response = await fetch('/.netlify/functions/photos').then(response => response.json()),
+    let response = await fetch('/.netlify/functions/photos').then(handleErrors).then(response => response.json());
+    
+    if (response) {
         photoColor = JSON.stringify(response.color).replace(/"/g, ''),
         photoColorSubtle = convertToSubtleColor(photoColor),
         jumbleParts = document.querySelectorAll('.jumble *');
 
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      responseImage.style.backgroundColor = photoColorSubtle;
-    } else {
-      responseImage.style.backgroundColor = photoColor;
-    }
-    
-    responseImage.setAttribute('src', JSON.stringify(response.photoUrl).replace(/"/g, ''));
-    responseImage.setAttribute('alt', JSON.stringify(response.photoAlt).replace(/"/g, ''));
-    responseLink.setAttribute('href', JSON.stringify(response.photoPage).replace(/"/g, ''));
-    responseAuthor.innerText = JSON.stringify(response.authorName).replace(/"/g, '');
-    responseAuthor.setAttribute('href', JSON.stringify(response.authorPage).replace(/"/g, ''));
-
-    setTimeout(() => {
-      responseContainer.classList.add('reference-container--shown');
-      for (let i = 0; i < jumbleParts.length; i++) {
-        jumbleParts[i].style.fill = photoColor;
+    // Give photo "exit" transition time to run
+    setTimeout(function () {
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        responseImage.style.backgroundColor = photoColorSubtle;
+      } else {
+        responseImage.style.backgroundColor = photoColor;
       }
+      
+      responseImage.setAttribute('src', JSON.stringify(response.photoUrl).replace(/"/g, ''));
+      responseImage.setAttribute('alt', JSON.stringify(response.photoAlt).replace(/"/g, ''));
+      responseLink.setAttribute('href', JSON.stringify(response.photoPage).replace(/"/g, ''));
+      responseAuthor.innerText = JSON.stringify(response.authorName).replace(/"/g, '');
+      responseAuthor.setAttribute('href', JSON.stringify(response.authorPage).replace(/"/g, ''));
+
+      // Give a short mental break after previous photo fades out
+      setTimeout(function () {
+        responseContainer.classList.add('reference-container--shown');
+        for (let i = 0; i < jumbleParts.length; i++) {
+          jumbleParts[i].style.fill = photoColor;
+        }
+      }, delay);
     }, delay);
+    }
   };
 
   // Show photo on first fetch
@@ -58,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Update photo upon user request
   const updatePhotoContainer = function () {
     responseContainer.classList.remove('reference-container--shown');
-    fetchPhoto(500);
+    fetchPhoto(300);
   };
 
   // Fetch new photo on clicking button
