@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function () {
 
   // Set up vars
   const main = document.getElementById('main'),
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
    * Add alpha channel
    * Used to make image background color more subtle in dark theme
    */
-  function convertToSubtleColor(hex) {
+  const convertToSubtleColor = function (hex) {
     let r = 0, g = 0, b = 0;
 
     r = "0x" + hex[1] + hex[2];
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         jumbleParts = document.querySelectorAll('.jumble *');
 
     // Give photo "exit" transition time to run
-    setTimeout(() => {
+    setTimeout(function () {
       if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         responseImage.style.backgroundColor = photoColorSubtle;
       } else {
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
       responseAuthor.setAttribute('href', JSON.stringify(response.authorPage).replace(/"/g, ''));
 
       // Give a short mental break after previous photo fades out
-      setTimeout(() => {
+      setTimeout(function () {
         responseContainer.classList.add('reference-container--shown');
         for (let i = 0; i < jumbleParts.length; i++) {
           jumbleParts[i].style.fill = photoColor;
