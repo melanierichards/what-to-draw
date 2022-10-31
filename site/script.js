@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
         responseImage = document.getElementById('response-image'),
         responseLink = document.getElementById('response-link'),
         responseAuthor = document.getElementById('response-author'),
-        fetchStatus = document.getElementById('fetch-status');
+        fetchStatus = document.getElementById('fetch-status'),
+        referrerString = '?utm_source=what_to_draw&utm_medium=referral';
 
   /* Convert photo color from API, from hex to RGB
    * Add alpha channel
@@ -80,9 +81,9 @@ document.addEventListener('DOMContentLoaded', function () {
       // Add values to image + metadata
       responseImage.setAttribute('src', JSON.stringify(response.photoUrl).replace(/"/g, ''));
       responseImage.setAttribute('alt', responseAltValue);
-      responseLink.setAttribute('href', JSON.stringify(response.photoPage).replace(/"/g, ''));
+      responseLink.setAttribute('href', JSON.stringify(response.photoPage).replace(/"/g, '') + referrerString);
       responseAuthor.innerText = JSON.stringify(response.authorName).replace(/"/g, '');
-      responseAuthor.setAttribute('href', JSON.stringify(response.authorPage).replace(/"/g, ''));
+      responseAuthor.setAttribute('href', JSON.stringify(response.authorPage).replace(/"/g, '') + referrerString);
 
       // Give a short mental break after previous photo fades out
       setTimeout(function () {
