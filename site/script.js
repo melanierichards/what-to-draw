@@ -58,8 +58,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const topicsValue = document.getElementById('topics').value,
         orientationValue = document.getElementById('orientation').value,
         functionWithParams = `/.netlify/functions/photos?topics=${topicsValue}&orientation=${orientationValue}`;
-
-    console.log(functionWithParams);
   
     let response = await fetch(functionWithParams).then(handleErrors).then(response => response.json());
     

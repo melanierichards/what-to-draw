@@ -12,7 +12,7 @@ exports.handler = async function (event) {
         data = await response.json();
 
   //console.log(data);
-  console.log(photoAPIWithParams);
+  //console.log(photoAPIWithParams);
 
   return {
     statusCode: 200,
