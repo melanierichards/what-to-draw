@@ -28,7 +28,9 @@
 :root {
   color-scheme: light dark;
 
+  --color-bg: #fff;
   --color-text: #222;
+  --color-text-subtle: #666;
   --color-selection-bg: #FDAF99;
   --color-selection: #000;
   --color-link-hover: #000;
@@ -43,6 +45,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
+
+  --color-bg: #000;  
   --color-text: #ccc;
   --color-link-hover: #fff;
   --color-heading: #efefef;

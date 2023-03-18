@@ -1,13 +1,18 @@
 const fetch = require('node-fetch');
 require('dotenv').config();
 
-exports.handler = async function () {
+exports.handler = async function (event) {
   const API_KEY = process.env.UNSPLASH_API_KEY,
         photoAPI = `https://api.unsplash.com/photos/random?content_filter=low&client_id=${API_KEY}`,
-        response = await fetch(photoAPI),
+        paramTopics = event.queryStringParameters.topics,
+        paramOrientation = event.queryStringParameters.orientation,
+        photoAPIWithParams = `${photoAPI}&topics=${paramTopics}&orientation=${paramOrientation}`;
+
+  const response = await fetch(photoAPIWithParams),
         data = await response.json();
 
-  // console.log(data);
+  //console.log(data);
+  console.log(photoAPIWithParams);
 
   return {
     statusCode: 200,

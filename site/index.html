@@ -57,6 +57,34 @@
           <a id="response-link" href="">Photo on Unsplash</a> by <a id="response-author" href=""></a>
         </figcaption>
       </figure>
+      <details class="filters">
+        <summary class="filters__summary">Filter photos</summary>
+        <div class="filters__body">
+          <label for="topics">Topic</label>
+          <select id="topics" aria-describedby="topic-desc">
+            <option value="any" default>Any</option>
+            <option value="Jpg6Kidl-Hk">Animals</option>
+            <option value="rnSKDHwwYUk">Architecture</option>
+            <option value="M8jVbLbTRws">Architecture & Interiors</option>
+            <option value="bDo48cUhwnY">Arts & Culture</option>
+            <option value="xjPR4hlkBGA">Food & Drink</option>
+            <option value="S4MKLAsBB74">Fashion</option>
+            <option value="dijpbw99kQQ">History</option>
+            <option value="R_Fyn-Gwtlw">Interiors</option>
+            <option value="6sMVjTLSkeQ">Nature</option>
+            <option value="towJZFskpGg">People</option>
+            <option value="xHxYTMHLgOc">Street Photography</option>
+            <option value="Fzo3zuOHN6w">Travel</option>
+          </select>
+          <label for="orientation">Orientation</label>
+          <select id="orientation">
+            <option value="any" default>Any</option>
+            <option value="landscape">Landscape</option>
+            <option value="portrait">Portrait</option>
+            <option value="squarish">Squarish</option>
+          </select>
+        </div>
+      </details>
       <button id="fetch-btn" class="fetch-btn">
         <span>Try another photo</span>
       </button>

@@ -54,7 +54,14 @@ document.addEventListener('DOMContentLoaded', function () {
   const fetchPhoto = async function (delay) {
     responseContent.setAttribute('aria-busy', 'true');
     fetchStatus.innerText = 'Getting photo';
-    let response = await fetch('/.netlify/functions/photos').then(handleErrors).then(response => response.json());
+
+    const topicsValue = document.getElementById('topics').value,
+        orientationValue = document.getElementById('orientation').value,
+        functionWithParams = `/.netlify/functions/photos?topics=${topicsValue}&orientation=${orientationValue}`;
+
+    console.log(functionWithParams);
+  
+    let response = await fetch(functionWithParams).then(handleErrors).then(response => response.json());
     
     if (response) {
         photoColor = JSON.stringify(response.color).replace(/"/g, ''),
