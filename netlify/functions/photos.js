@@ -6,9 +6,8 @@ exports.handler = async function (event) {
         photoAPI = `https://api.unsplash.com/photos/random?content_filter=low&client_id=${API_KEY}`,
         paramTopics = event.queryStringParameters.topics,
         paramOrientation = event.queryStringParameters.orientation,
-        photoAPIWithParams = `${photoAPI}&topics=${paramTopics}&orientation=${paramOrientation}`;
-
-  const response = await fetch(photoAPIWithParams),
+        photoAPIWithParams = `${photoAPI}&topics=${paramTopics}&orientation=${paramOrientation}`,
+        response = await fetch(photoAPIWithParams),
         data = await response.json();
 
   //console.log(data);
