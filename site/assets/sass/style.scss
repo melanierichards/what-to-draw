@@ -188,9 +188,8 @@ h1 {
   }
 
   .jumble {
-    width: auto;
-    height: auto;
-    min-height: 8rem;
+    width: 8rem;
+    height: 8rem;
   }
 
   .header__text {
@@ -348,6 +347,10 @@ figure {
   &::before {
     content: "+";
     padding-right: $space-xxs;
+  }
+
+  &::-webkit-details-marker {
+    display: none;
   }
 }
 
