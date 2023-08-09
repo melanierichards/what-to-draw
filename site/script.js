@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let errorMsg = document.createElement('div');
     errorMsg.setAttribute('role', 'alert');
     errorMsg.setAttribute('id', 'error-msg');
-    errorMsg.innerHTML = '<p>Sorry, something went wrong! Most likely this page has hit its hourly limit for getting new photos. Please try again later.</p>';
+    errorMsg.innerHTML = '<p>Sorry, something went wrong! Please try again later, or <a href="https://melanie-richards.com/info">contact me</a> let me know that the generator isn’t working.</p>';
     responseContent.innerHTML = '';
     responseContent.appendChild(errorMsg);
   };
